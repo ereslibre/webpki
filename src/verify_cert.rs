@@ -53,6 +53,7 @@ pub fn build_chain(
 
     // TODO: revocation.
 
+    #[allow(clippy::single_match)]
     match loop_while_non_fatal_error(trust_anchors, |trust_anchor: &TrustAnchor| {
         let trust_anchor_subject = untrusted::Input::from(trust_anchor.subject);
         if cert.issuer != trust_anchor_subject {
@@ -339,6 +340,7 @@ where
     V: IntoIterator,
 {
     for v in values {
+        #[allow(clippy::single_match)]
         match f(v) {
             Ok(()) => {
                 return Ok(());
